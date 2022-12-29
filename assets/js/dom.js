@@ -1,4 +1,6 @@
 export let moviesList = null;
+export let inputSearch = null;
+export let triggerMode = false;
 
 const createElement = ({
 	type,
@@ -9,18 +11,21 @@ const createElement = ({
 	handler
 }) => {
 	const el = document.createElement(type);
-	for (const key in attr) {
-		el.setAttribute(key,attr[key]);
-	}
 
-	container.append(el);
-	// ? prepend
+	Object.keys(attr).forEach((key) => {
+    if (key !== 'innerHTML') el.setAttribute(key, attr[key]);
+    else el.innerHTML = attr[key];
+  })
+
+    if (container && position === 'append') container.append(el);
+    if (container && position === 'prepend') container.prepend(el);
+    if (evt && handler && typeof handler === 'function')	el.addEventListener(evt, handler);
 
 	return el;
 }
 
 export const createStyle = () => {
-const headStyle = document.createElement('style');
+
 
 headStyle.innerHTML = `
 *{
