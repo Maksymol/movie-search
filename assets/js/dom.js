@@ -187,7 +187,7 @@ export const addMovieToList = (movie) => {
       class: "movie__image",
       src: /(http|https):\/\//i.test(movie.Poster)
         ? movie.Poster
-        : "assets/img/no-image.png",
+        : "assets/img/no-image.jpg",
       alt: movie.Title,
       title: movie.Title,
     },
